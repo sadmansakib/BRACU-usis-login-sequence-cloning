@@ -16,25 +16,17 @@ class AddCookiesInterceptor(private var context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val builder = chain.request().newBuilder()
         val preferences: HashSet<String> = CookiesHelper.getCookies(context)
-//        Log.i("preference","$preferences")
+        lateinit var parser : Array<String>
         if (preferences.isNotEmpty()) {
-            val cookieString = StringBuilder()
             for (cookie in preferences) {
-                val parser: Array<String> = cookie.split(";").toTypedArray()
-                cookieString.append(parser[0] + "; ")
+                parser = cookie.split(";").toTypedArray()
             }
-//        Log.v(
-//            "OkHttp",
-//            "Adding Header: $cookieString"
-//        )
             builder.addHeader(
                 "Cookie",
-                cookieString.toString().substring(0, cookieString.length - 2)
+                parser[0]
             )
-            builder.addHeader("Cookie2", "\$Version=1")
         }
 
-        //        Log.i("builder","${builder.build().headers}")
         return chain.proceed(builder.build())
     }
 

@@ -1,6 +1,7 @@
 package com.example.bracuusisloginsequenceclone.repositories
 
 import com.example.bracuusisloginsequenceclone.Application
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 /**Repository class for Keeping Business Logic.**/

@@ -3,9 +3,7 @@ package com.example.bracuusisloginsequenceclone
 import android.app.Application
 import android.content.Context
 import com.example.bracuusisloginsequenceclone.network.ApiInterface
-import com.example.bracuusisloginsequenceclone.network.interceptors.AddCookiesInterceptor
-import com.example.bracuusisloginsequenceclone.network.interceptors.AuthenticationHeaderInterceptor
-import com.example.bracuusisloginsequenceclone.network.interceptors.ReceivedCookiesInterceptor
+import com.example.bracuusisloginsequenceclone.network.interceptors.*
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,13 +38,18 @@ class Application : Application() {
             }
 
             val client = OkHttpClient.Builder().apply {
+                followRedirects(false)
+                connectTimeout(30, TimeUnit.SECONDS)
+                readTimeout(30, TimeUnit.SECONDS)
+                retryOnConnectionFailure(true)
                 addInterceptor(AuthenticationHeaderInterceptor())
                 addInterceptor(AddCookiesInterceptor(context))
                 addInterceptor(ReceivedCookiesInterceptor(context))
+                addInterceptor(RedirectHandlerInterceptor())
+                addInterceptor(AddCookiesInterceptor(context))
+                addInterceptor(ReceivedCookiesInterceptor(context))
                 addInterceptor(httpLoggingInterceptor)
-                connectTimeout(30, TimeUnit.SECONDS)
-                readTimeout(30, TimeUnit.SECONDS)
-                followRedirects(false)
+
             }.build()
             return Retrofit.Builder()
                 .baseUrl("http://usis.bracu.ac.bd/academia/")

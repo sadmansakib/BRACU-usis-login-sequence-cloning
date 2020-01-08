@@ -6,10 +6,11 @@ This is a mock application(WIP) that tries to replicate the login sequence used 
 
 1. Authentication with from to j_spring_security_check? endpoint serves it's purpose.
 2. Able to maintain USIS session management using cookies persistently.
+3. gets proper response from backend. It's now possible to recreate the app from scratch.
 
 ## TODO
 
-1. j_spring_security_check? shows 302 response code with a redirection location. Automatic redirection of OKHTTP tends to avoid 302 and redirects to another end point causing an exception error. Next task would be manually invoking redirection to proper address given by j_spring_security_check?
+~~1. j_spring_security_check? shows 302 response code with a redirection location. Automatic redirection of OKHTTP tends to avoid 302 and redirects to another end point causing an exception error. Next task would be manually invoking redirection to proper address given by j_spring_security_check?~~
 
 2. Automate the request sequence so that manual user interference is not needed  
 

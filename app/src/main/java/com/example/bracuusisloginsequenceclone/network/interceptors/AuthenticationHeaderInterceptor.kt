@@ -14,12 +14,9 @@ class AuthenticationHeaderInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var req = chain.request()
         req = req.newBuilder()
-            .header("notificationToken", " ")
-            .header("Host", "usis.bracu.ac.bd")
-            .header("isLatest", "updated")
-            .header("Connection", "Keep-Alive")
-            .header("User-Agent", "Apache-HttpClient/UNAVAILABLE (java 1.4)")
+//            .header("notificationToken","fI4vxs6qWgk:APA91bGenoHPMb4R7y0RmEhSUbv3GeWMlrEDZS-QCRDhxv0NBFSrVhjBqQ5KxnczQHS1wTqkgohmr-uAmLvRRU2NFZmy5vF8AKTQeabp0vINKDl737x5C0x2aRizHth5gLjfcKulFPb5")
+//            .header("appKey","AX32WOHH231FDS2158N14L8N")
             .build()
-        return chain.proceed(req)
+        return  chain.proceed(req)
     }
 }

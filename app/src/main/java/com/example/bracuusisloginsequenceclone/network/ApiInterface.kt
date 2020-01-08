@@ -15,7 +15,7 @@ import retrofit2.http.POST
 
 interface ApiInterface {
     @FormUrlEncoded
-    @POST("j_spring_security_check?")
+    @POST("j_spring_security_check")
     suspend fun initiateLoginTest(
         @Field(value = "j_username", encoded = false) username: String,
         @Field(value = "j_password", encoded = false) password: String

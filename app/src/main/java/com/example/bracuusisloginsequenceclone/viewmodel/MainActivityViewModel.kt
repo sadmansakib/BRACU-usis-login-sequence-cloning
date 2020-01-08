@@ -41,8 +41,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         viewModelScope.launch {
             try {
                 val response = AuthRepository().studentLogin(studentEmail!!, studentPassword!!)
-                Log.d("response", response.raw().headers.toString())
-                Log.i("response body", response.body().toString())
+                Log.d("response", response.raw().toString())
             } catch (e: APIExceptions) {
                 authListener?.onFailure(e.message!!)
             }
